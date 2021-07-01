@@ -8,12 +8,13 @@
 # Author: Kevin Morris <kevr@0cost.org>
 # License: MIT
 #
+import json
 import os
 import random
 import re
 import sys
+
 import weechat
-import json
 
 usage = "usage: /weecipher (help|add nick|rm nick)"
 
