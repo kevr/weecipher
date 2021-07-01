@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
+
 # Project: weecipher
-# Description: Cipher communication between specific hostmasks.
-#
-# This script depends on the langdetect Python package
-#
-#
+# Description: Cipher communication between IRC nicks.
 # Author: Kevin Morris <kevr@0cost.org>
 # License: MIT
 #
@@ -139,14 +135,19 @@ def notice_cb(data, pbuffer, date, tags,
     if len(parts) < 4:
         return weechat.WEECHAT_RC_OK
 
+    # Take the nick and split out the rest of it.
     nick = parts[0]
     parts = parts[2:]
 
+    # Take the new first word; that's our metacmd (possibly).
     metacmd = parts[0]
 
+    # Some numerics used for checking; this will become more
+    # efficient as our list of NOTICE commands grow.
     negotiate = 1
     kill = 2
 
+    # NOTICE commands.
     cmds = {
         "WEECIPHER-NEGOTIATE": negotiate,
         "WEECIPHER-KILL": kill
